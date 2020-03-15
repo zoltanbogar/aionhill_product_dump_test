@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="AionHill\Dump\Console\ProductQueryCommand">
+        <arguments>
+            <argument name="CollectionFactory" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\CollectionFactory</argument>
+            <argument name="StockRegistry" xsi:type="object">Magento\CatalogInventory\Model\StockRegistry</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="AionHill_Dump" xsi:type="object">AionHill\Dump\Console\ProductQueryCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
