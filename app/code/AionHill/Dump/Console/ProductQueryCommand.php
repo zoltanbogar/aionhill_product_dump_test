@@ -38,6 +38,7 @@ class ProductQueryCommand extends Command
     {
         $this->collectionFactory = $collectionFactory;
         $this->stockRegistry = $stockRegistry;
+
         parent::__construct();
     }
 
@@ -57,7 +58,7 @@ class ProductQueryCommand extends Command
      * @param OutputInterface $output
      * @return int|null
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output) : int
     {
         try {
             $table = new Table($output);
@@ -91,7 +92,7 @@ class ProductQueryCommand extends Command
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    private function getProducts()
+    private function getProducts() : void
     {
         $collection = $this->collectionFactory->create();
         $collection->joinAttribute(
@@ -109,16 +110,16 @@ class ProductQueryCommand extends Command
      * @param $status
      * @return string
      */
-    private function processStatus($status)
+    private function processStatus($status) : string
     {
-        return $status === 1 ? 'Enabled' : 'Disabled';
+        return (int) $status === 1 ? 'Enabled' : 'Disabled';
     }
 
     /**
      * @param $product_id
      * @return int
      */
-    private function getProductQuantity($product_id)
+    private function getProductQuantity($product_id) : int
     {
         $product_stock = $this->stockRegistry->getStockItem($product_id);
 
